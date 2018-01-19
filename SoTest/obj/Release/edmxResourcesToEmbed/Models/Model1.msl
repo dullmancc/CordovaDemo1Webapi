@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoilTestModelStoreContainer" CdmEntityContainer="SoilTestEntities1">
+    <EntitySetMapping Name="t_CollectionPoint">
+      <EntityTypeMapping TypeName="SoilTestModel.t_CollectionPoint">
+        <MappingFragment StoreEntitySet="t_CollectionPoint">
+          <ScalarProperty Name="CollectionPointID" ColumnName="CollectionPointID" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="CountyLevel" ColumnName="CountyLevel" />
+          <ScalarProperty Name="Altitude" ColumnName="Altitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="GrainProduceCounty" ColumnName="GrainProduceCounty" />
+          <ScalarProperty Name="PointAddress" ColumnName="PointAddress" />
+          <ScalarProperty Name="PointPosition" ColumnName="PointPosition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Sample">
+      <EntityTypeMapping TypeName="SoilTestModel.t_Sample">
+        <MappingFragment StoreEntitySet="t_Sample">
+          <ScalarProperty Name="PictureURL" ColumnName="PictureURL" />
+          <ScalarProperty Name="SampleID" ColumnName="SampleID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="FinallyTime" ColumnName="FinallyTime" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Task">
+      <EntityTypeMapping TypeName="SoilTestModel.t_Task">
+        <MappingFragment StoreEntitySet="t_Task">
+          <ScalarProperty Name="PictureURL" ColumnName="PictureURL" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TaskState" ColumnName="TaskState" />
+          <ScalarProperty Name="CollectionPointID" ColumnName="CollectionPointID" />
+          <ScalarProperty Name="TimeRequest" ColumnName="TimeRequest" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="SuperimposedLandSubtype" ColumnName="SuperimposedLandSubtype" />
+          <ScalarProperty Name="SuperimposedLandType" ColumnName="SuperimposedLandType" />
+          <ScalarProperty Name="SuperimposedLandUse" ColumnName="SuperimposedLandUse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_User">
+      <EntityTypeMapping TypeName="SoilTestModel.t_User">
+        <MappingFragment StoreEntitySet="t_User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserBirthday" ColumnName="UserBirthday" />
+          <ScalarProperty Name="UserGender" ColumnName="UserGender" />
+          <ScalarProperty Name="UserCompany" ColumnName="UserCompany" />
+          <ScalarProperty Name="UserdeDartment" ColumnName="UserdeDartment" />
+          <ScalarProperty Name="UserTelephone" ColumnName="UserTelephone" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SoilTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="t_CollectionPoint">
+    <Key>
+      <PropertyRef Name="CollectionPointID" />
+    </Key>
+    <Property Name="CollectionPointID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountyLevel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Altitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="GrainProduceCounty" Type="nvarchar" MaxLength="50" />
+    <Property Name="PointAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="PointPosition" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_Sample">
+    <Key>
+      <PropertyRef Name="SampleID" />
+    </Key>
+    <Property Name="SampleID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FinallyTime" Type="datetime" />
+    <Property Name="Text" Type="nvarchar" MaxLength="50" />
+    <Property Name="PictureURL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_Task">
+    <Key>
+      <PropertyRef Name="TaskID" />
+    </Key>
+    <Property Name="TaskID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TaskState" Type="int" Nullable="false" />
+    <Property Name="CollectionPointID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TimeRequest" Type="datetime" />
+    <Property Name="Reason" Type="nvarchar(max)" />
+    <Property Name="SuperimposedLandSubtype" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SuperimposedLandType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SuperimposedLandUse" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PictureURL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserBirthday" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserGender" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserCompany" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserdeDartment" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserTelephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_t_Sample_t_Task">
+    <End Role="t_Task" Type="Self.t_Task" Multiplicity="1" />
+    <End Role="t_Sample" Type="Self.t_Sample" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Task">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="t_Sample">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_Task_t_CollectionPoint">
+    <End Role="t_CollectionPoint" Type="Self.t_CollectionPoint" Multiplicity="1" />
+    <End Role="t_Task" Type="Self.t_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_CollectionPoint">
+        <PropertyRef Name="CollectionPointID" />
+      </Principal>
+      <Dependent Role="t_Task">
+        <PropertyRef Name="CollectionPointID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_Task_t_User">
+    <End Role="t_User" Type="Self.t_User" Multiplicity="1" />
+    <End Role="t_Task" Type="Self.t_Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="t_Task">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SoilTestModelStoreContainer">
+    <EntitySet Name="t_CollectionPoint" EntityType="Self.t_CollectionPoint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_Sample" EntityType="Self.t_Sample" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_Task" EntityType="Self.t_Task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_User" EntityType="Self.t_User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_t_Sample_t_Task" Association="Self.FK_t_Sample_t_Task">
+      <End Role="t_Task" EntitySet="t_Task" />
+      <End Role="t_Sample" EntitySet="t_Sample" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_Task_t_CollectionPoint" Association="Self.FK_t_Task_t_CollectionPoint">
+      <End Role="t_CollectionPoint" EntitySet="t_CollectionPoint" />
+      <End Role="t_Task" EntitySet="t_Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_Task_t_User" Association="Self.FK_t_Task_t_User">
+      <End Role="t_User" EntitySet="t_User" />
+      <End Role="t_Task" EntitySet="t_Task" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
